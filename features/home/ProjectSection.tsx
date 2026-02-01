@@ -15,7 +15,7 @@ const projects: Project[] = [
     title: "Finance App & Website",
     description:
       "Transform your financial life with my all-in-one finance app: budgeting, investing, and planning for a secure future, all in a single, user-friendly platform.",
-    image: "/images/project-1.jpg",
+    image: "/project-1.jpg",
     bgColor: "bg-lime-200",
     buttonColor: "bg-pink-200",
   },
@@ -24,7 +24,7 @@ const projects: Project[] = [
     title: "Finance App & Website",
     description:
       "Transform your financial life with my all-in-one finance app: budgeting, investing, and planning for a secure future, all in a single, user-friendly platform.",
-    image: "/images/project-2.jpg",
+    image: "/project-2.jpg",
     bgColor: "bg-pink-200",
     buttonColor: "bg-sky-300",
   },
@@ -33,7 +33,7 @@ const projects: Project[] = [
     title: "Finance App & Website",
     description:
       "Transform your financial life with my all-in-one finance app: budgeting, investing, and planning for a secure future, all in a single, user-friendly platform.",
-    image: "/images/project-3.jpg",
+    image: "/project-3.jpg",
     bgColor: "bg-sky-200",
     buttonColor: "bg-yellow-300",
   },
