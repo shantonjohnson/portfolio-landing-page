@@ -1,1 +1,1 @@
-![](public/Cover.png)
+![](_documentation/Cover.png)
