@@ -1,43 +1,34 @@
-// this is how app/projects/[slug]/page.tsx looks, it works and i like it
 import { notFound } from "next/navigation";
 import Image from "next/image";
 
 type Project = {
   slug: string;
   title: string;
-  description: string;
-  image: string;
+  intro: string;
+  heroImage: string;
   timeline: string;
   platform: string;
+  role: string;
+  company: string;
+  challenge: string;
+  result: string;
 };
 
 const projects: Project[] = [
   {
     slug: "finance-app",
     title: "Finance App & Website",
-    description:
-      "An all-in-one finance platform focused on budgeting, investing, and long-term financial planning.",
-    image: "/project-1.jpg",
-    timeline: "Jan 2020 – Jul 2020",
-    platform: "Mobile & Website",
-  },
-  {
-    slug: "finance-app-2",
-    title: "Finance App Redesign",
-    description:
-      "A complete UI/UX redesign improving accessibility, clarity, and conversion.",
-    image: "/project-2.jpg",
-    timeline: "Aug 2020 – Dec 2020",
-    platform: "Mobile & Website",
-  },
-  {
-    slug: "finance-app-3",
-    title: "Investment Dashboard",
-    description:
-      "A real-time investment dashboard with analytics and reporting tools.",
-    image: "/project-3.jpg",
-    timeline: "Jan 2021 – Apr 2021",
-    platform: "Web App",
+    intro:
+      "Transform your financial life with my all-in-one finance app: budgeting, investing, and planning for a secure future, all in a single, user-friendly.",
+    heroImage: "/project-2.jpg",
+    timeline: "Jan 2020 – Dec 2020",
+    platform: "Mobile App",
+    role: "UI Designer",
+    company: "DANA",
+    challenge:
+      "Lorem ipsum dolor sit amet consectetur. Nam id nisl malesuada leo eget sit sed. At lorem viverra quis pellentesque nullam amet porta scelerisque quam. Donec orci aliquam malesuada elementum et purus. Ut ac quam vulputate malesuada vitae id. Accumsan quis massa feugiat amet. Et fusce elementum cursus tristique. Pharetra enim turpis ipsum pretium. Felis pharetra feugiat interdum nunc nec lacus mi posuere bibendum. Nibh ipsum purus senectus purus rhoncus imperdiet enim. Tortor rutrum mauris risus nec.",
+    result:
+      "Lorem ipsum dolor sit amet consectetur. Nam id nisl malesuada leo eget sit sed. At lorem viverra quis pellentesque nullam amet porta scelerisque quam. Donec orci aliquam malesuada elementum et purus.",
   },
 ];
 
@@ -48,54 +39,88 @@ export async function generateStaticParams() {
 }
 
 type PageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
+  params: Promise<{ slug: string }>;
 };
 
 export default async function ProjectPage({ params }: PageProps) {
-  // 🔑 REQUIRED in Next.js 16
   const { slug } = await params;
 
-  const project = projects.find(
-    (project) => project.slug === slug
-  );
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
   }
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-6">
+    <main className="max-w-6xl mx-auto px-4 py-16">
+      {/* Title */}
+      <h1 className="text-5xl font-bold mb-6">
         {project.title}
       </h1>
 
-      <div className="flex gap-8 text-sm mb-8">
-        <div>
-          <p className="font-semibold">Timeline</p>
-          <p className="text-gray-600">{project.timeline}</p>
-        </div>
-        <div>
-          <p className="font-semibold">Platform</p>
-          <p className="text-gray-600">{project.platform}</p>
-        </div>
-      </div>
+      {/* Intro */}
+      <p className="max-w-4xl text-lg text-gray-700 mb-12">
+        {project.intro}
+      </p>
 
-      <div className="border-2 border-black mb-8">
+      {/* Hero Image */}
+      <div className="border-2 border-black mb-16">
         <Image
-          src={project.image}
+          src={project.heroImage}
           alt={project.title}
-          width={1000}
-          height={600}
+          width={1400}
+          height={700}
           className="w-full object-cover"
           priority
         />
       </div>
 
-      <p className="text-lg text-gray-700 max-w-3xl leading-relaxed">
-        {project.description}
-      </p>
+      {/* Content Grid */}
+      <section className="grid md:grid-cols-[280px_1fr] gap-16">
+        {/* Left Meta Column */}
+        <aside className="space-y-8 text-sm">
+          <div>
+            <p className="font-semibold text-lg">Timeline</p>
+            <p className="text-gray-600">{project.timeline}</p>
+          </div>
+
+          <div>
+            <p className="font-semibold text-lg">Platform</p>
+            <p className="text-gray-600">{project.platform}</p>
+          </div>
+
+          <div>
+            <p className="font-semibold text-lg">Role</p>
+            <p className="text-gray-600">{project.role}</p>
+          </div>
+
+          <div>
+            <p className="font-semibold text-lg">Company name</p>
+            <p className="text-gray-600">{project.company}</p>
+          </div>
+        </aside>
+
+        {/* Right Content Column */}
+        <div className="space-y-12">
+          <div>
+            <h2 className="text-2xl font-bold mb-4">
+              Challange/Problem
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
+              {project.challenge}
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold mb-4">
+              Result
+            </h2>
+            <p className="text-gray-700 leading-relaxed">
+              {project.result}
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
